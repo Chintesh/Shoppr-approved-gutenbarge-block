@@ -3,7 +3,7 @@
   padding-right: 0 !important;
   background-color: #002539;
   border: 1px solid #072538;
-  float: left;
+  /*float: left;*/
 }
 .spa_header_container.remove_padding img {
   background-color: white;
@@ -65,7 +65,6 @@
   padding: 15px 0 0 0;
 }
 .spa_review_container {
-  background-color: white;
   float: left;
   width: 100%;
   padding: 18px;
@@ -251,4 +250,12 @@ span.fa.fa-window-minimize.checked {
 .sap_api_doc {
   font-size: 16px;
   line-height: 2;
+}
+.components-panel__row.spa_panel_row_tootgle {
+  margin-top: 10px;
+}
+.components-panel__row.spa_panal_row_class {
+  flex-direction: column;
+  margin-top: 20px;
+  align-items: flex-start;
 }

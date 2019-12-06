@@ -48,11 +48,11 @@ function spa_ajax_main_response(page, short) {
             parseInt(review.Overall) +
             '.png"></div></div><div class="spa_reviewer_comment"><p class="text-left reviewcomments">' +
             review.textcomments +
-            '</p></div><div class="spa_various_ratings"><div class="spa_rating"><span class="heading">Product Satisfaction</span>' +
+            '</p></div><div class="spa_various_ratings"><div class="spa_rating product_satisfaction"><span class="heading">Product Satisfaction</span>' +
             product_rating(review.Product) +
-            '</div><div class="spa_rating"><span class="heading">Customer Service</span>' +
+            '</div><div class="spa_rating customer_service"><span class="heading">Customer Service</span>' +
             customer_rating(review.CustomerService) +
-            '</div><div class="spa_rating"><span class="heading">Referral</span>' +
+            '</div><div class="spa_rating referral"><span class="heading">Referral</span>' +
             referral_rating(review.Referral) +
             "</div></div>";
           jQuery("#spa_response").append(html);

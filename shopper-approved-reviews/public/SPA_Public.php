@@ -6,10 +6,9 @@ if ( !class_exists( 'SPA_Public' ) )
 {
     class SPA_Public
     {
-        public $spa_block_css;
-        public $headerrating;
-        public $headertitle;
-        public $headersubtitle;
+        public $spa_block_css = "";
+        public $headertitle = "{overallrating} Overall Satisfaction Rating";
+        public $headersubtitle = "{numberofcustomer} Customer Ratings Ratings from Actual Customers";
         
         public function __construct()
         {
@@ -20,6 +19,7 @@ if ( !class_exists( 'SPA_Public' ) )
         }
 
         /**
+         * 
          * Include javascript and css for shortcode.
          * @since 1.0
          */
@@ -78,15 +78,13 @@ if ( !class_exists( 'SPA_Public' ) )
             <div class="spa_header_content">
                 <div class="spa_full_width">
                     <div class="spa_half_width">
-                        <?php 
-                        if($this->headerrating == '1'):
-                        for ($x = 1; $x <= 5; $x++) {
+                        <?php for ($x = 1; $x <= 5; $x++) {
                                         if ($x <= $reviews->average) {
                                             echo "<span class='fa fa-star checked'></span>";
                                         } else {
                                             echo "<span class='fa fa-star'></span>";
                                         }
-                                    } endif;?>
+                                    } ?>
                         <h3><?php echo str_replace( '{overallrating}', '<span
                                 class="bold" itemprop="ratingValue">'.$reviews->average.'</span>', $this->headertitle ); ?>
                         </h3>

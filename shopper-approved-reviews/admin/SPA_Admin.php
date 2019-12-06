@@ -35,11 +35,11 @@ if ( !class_exists( 'SPA_Admin' ) ) {
                         ),
                         'headertitle' => array(
                             'type'      => 'string',
-                            'default'   =>  "Based on {numberofcustomer} Customer Ratings Ratings from Actual Customers",
+                            'default'   => '{overallrating} Overall Satisfaction Rating',
                         ),
                         'headersubtitle' => array(
                             'type'      => 'string',
-                            'default'   => "{overallrating} Overall Satisfaction Rating",
+                            'default'   =>  'Based on {numberofcustomer} Customer Ratings Ratings from Actual Customers',
                         ),
                     ),
                     'render_callback' => array($this,'spa_render_block_callback'),
@@ -48,15 +48,12 @@ if ( !class_exists( 'SPA_Admin' ) ) {
         }
 
         public function spa_render_block_callback($attributes){
-            //echo '<pre>'; print_r($attributes);
             $public = new SPA_Public();
             
             $public->spa_block_css = $attributes['spa_block_css'];
-            $public->headerrating = $attributes['headerrating'];
             $public->headertitle = $attributes['headertitle'];
             $public->headersubtitle = $attributes['headersubtitle'];
-            
-           // echo '<pre>'; print_r($public);
+        
             return $public->spa_load_content();
         }
 
