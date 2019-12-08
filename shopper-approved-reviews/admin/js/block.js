@@ -15,12 +15,16 @@ const {
   TextareaControl,
   ToggleControl,
   ServerSideRender,
-  SelectControl
+  SelectControl,
+  G, Path, SVG, Circle
 } = wp.components;
 
+const spa_icon = () => (
+  <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="128.000000pt" height="128.000000pt" viewBox="0 0 128.000000 128.000000" preserveAspectRatio="xMidYMid meet"><g transform="translate(0.000000,128.000000) scale(0.100000,-0.100000)" fill="#0e253a" stroke="none"><path d="M1129 1139 c-162 -128 -315 -329 -426 -557 -39 -82 -83 -193 -83 -211 0 -3 40 -5 89 -3 l90 3 11 57 c53 274 197 567 355 725 20 20 35 37 32 37-2 0 -33 -23 -68 -51z"/><path d="M282 920 c-46 -19 -48 -44 -18 -278 35 -278 35 -279 179 -281 l69 -1-7 43 c-18 115 -70 296 -120 420 -6 15 0 17 51 17 33 0 65 -4 71 -8 14 -9 63-123 63 -146 0 -34 20 -21 67 47 28 40 76 100 108 135 l57 62 -249 -1 c-136 0-258 -4 -271 -9z"/><path d="M345 295 c-44 -43 -25 -117 33 -130 41 -9 77 9 92 44 33 81 -64 148-125 86z"/><path d="M663 308 c-52 -25 -52 -107 -1 -134 83 -43 159 56 93 121 -25 26 -5631 -92 13z"/></g></svg>
+  );
 registerBlockType("spa/spa-render", {
   title: __("SPA Reviews"),
-  icon: "lock",
+  icon: spa_icon,
   category: "common",
   attributes: {
     headerbg: {
@@ -174,7 +178,6 @@ registerBlockType("spa/spa-render", {
       className
     } = props;
 
-    spa_ajax_main_response(0, "newest");
 
     let HeaderbgStyle = headerbg ? "background-color :" + headerbg + ";" : "";
     let BodybgStyle = bodybg ? "background-color :" + bodybg + ";" : "";
@@ -288,13 +291,18 @@ registerBlockType("spa/spa-render", {
 
     setAttributes({ spa_block_css: spa_css });
 
+    setTimeout(
+      function() {
+        spa_ajax_main_response(0, "newest");
+      }, 1000);
+
     return [
       <Fragment>
         <InspectorAdvancedControls>
           <PanelRow>
             <PanelRow>
               <TextareaControl
-                label="Custom CSS"
+                label="SPA Custom CSS"
                 value={customCssText}
                 onChange={value => setAttributes({ customCssText: value })}
               />
@@ -440,6 +448,13 @@ registerBlockType("spa/spa-render", {
                   disableAlpha
                 />
               </PanelRow>
+              <label>Content font color</label>
+              <PanelRow className="spa_panal_row_class">
+                <ColorPalette
+                  onChange={value => setAttributes({ bodyfontcolor: value })}
+                  disableAlpha
+                />
+              </PanelRow>
               <PanelRow className="spa_panal_row_class">
                 <strong className="spa_panel_row_strong">
                   Show Below Fields
@@ -559,13 +574,6 @@ registerBlockType("spa/spa-render", {
                   onChange={value =>
                     setAttributes({ contentborderradius: value })
                   }
-                />
-              </PanelRow>
-              <label>Body font color</label>
-              <PanelRow className="spa_panal_row_class">
-                <ColorPalette
-                  onChange={value => setAttributes({ bodyfontcolor: value })}
-                  disableAlpha
                 />
               </PanelRow>
             </PanelBody>

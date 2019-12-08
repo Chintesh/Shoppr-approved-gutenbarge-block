@@ -41,6 +41,10 @@ if ( !class_exists( 'SPA_Admin' ) ) {
                             'type'      => 'string',
                             'default'   =>  'Based on {numberofcustomer} Customer Ratings Ratings from Actual Customers',
                         ),
+                        'spa_block_id' => array(
+                            'type'      => 'string',
+                            'default'   =>  '',
+                        )
                     ),
                     'render_callback' => array($this,'spa_render_block_callback'),
                 )
@@ -54,7 +58,7 @@ if ( !class_exists( 'SPA_Admin' ) ) {
             $public->headertitle = $attributes['headertitle'];
             $public->headersubtitle = $attributes['headersubtitle'];
         
-            return $public->spa_load_content();
+            return "<div class=".$attributes['spa_block_id'].">".$public->spa_load_content()."</div>";
         }
 
         public function spa_enqueue_style_admin() {

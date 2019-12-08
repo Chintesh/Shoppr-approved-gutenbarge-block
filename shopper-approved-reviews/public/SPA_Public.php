@@ -39,8 +39,12 @@ if ( !class_exists( 'SPA_Public' ) )
         public function spa_load_header()
         {
             $url = SPA_API . '/sites/?siteid=' . SPA_SITE_ID . '&token=' . SPA_TOKEN . '';
-           	$comman_header = wp_remote_get($url);
-           	return json_decode($comman_header['body']);
+               $comman_header = wp_remote_get($url);
+               if(is_wp_error( $comman_header )){
+                return false;
+               }else{
+                return json_decode($comman_header['body']);
+               }
         }
 
         public function spa_load_reviews()
